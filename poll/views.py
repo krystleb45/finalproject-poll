@@ -56,7 +56,7 @@ def list_by_user(request):
 
 @login_required()
 def polls_add(request):
-    if request.user.has_perm("poll.add_poll"):
+    if not request.user.has_perm("poll.add_poll"):
         if request.method == "POST":
             form = PollAddForm(request.POST)
             if form.is_valid:
@@ -85,7 +85,7 @@ def polls_add(request):
         context = {
             "form": form,
         }
-        return render(request, "poll/add_poll.html", context)
+        return render(request, "polls/add_poll.html", context)
     else:
         return HttpResponse("Sorry but you don't have permission to do that!")
 
@@ -234,7 +234,7 @@ def poll_vote(request, poll_id):
             "No choice selected!",
             extra_tags="alert alert-warning alert-dismissible fade show",
         )
-        return redirect("polls:detail", poll_id)
+        return redirect("poll:detail", poll_id)
     return render(request, "poll/poll_result.html", {"poll": poll})
 
 
