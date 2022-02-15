@@ -70,7 +70,7 @@ def polls_add(request):
                     poll=poll, choice_text=form.cleaned_data["choice2"]
                 ).save()
                 new_choice3 = Choice(
-                    poll=poll, choice_text=form.cleaned_data["choice2"]
+                    poll=poll, choice_text=form.cleaned_data["choice3"]
                 ).save()
 
                 messages.success(
