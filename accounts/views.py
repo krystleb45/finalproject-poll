@@ -20,7 +20,7 @@ def login_user(request):
             messages.error(request, "Username Or Password is incorrect!",
                         extra_tags='alert alert-warning alert-dismissible fade show')
 
-    return render(request, 'accounts/login.html')
+    return render(request, 'registration/login.html')
 
 
 def logout_user(request):
@@ -65,4 +65,4 @@ def create_user(request):
                 return redirect('accounts:login')
     else:
         form = UserRegistrationForm()
-    return render(request, 'accounts/register.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})
